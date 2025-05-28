@@ -1,0 +1,20 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      DOUYIN_API_KEY:
+        type: string
+        title: "DOUYIN_API_KEY"
+        description: ""
+
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'python', env: {DOUYIN_API_KEY: config.DOUYIN_API_KEY}})
+
+  build:
+    dockerfile: Dockerfile
+    dockerBuildPath: .
